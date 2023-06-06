@@ -316,6 +316,7 @@ export const navItems = [
         },
         ratings: 4.2,
       },
+      price: 1099,
       discount_price: 1099,
       rating: 5,
       total_sell: 80,
@@ -444,7 +445,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,
@@ -512,7 +512,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,
@@ -545,6 +544,7 @@ export const navItems = [
         },
         ratings: 4.2,
       },
+      price: 300,
       discount_price: 1099,
       rating: 5,
       total_sell: 20,
@@ -580,7 +580,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,

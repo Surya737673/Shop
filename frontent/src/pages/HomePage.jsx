@@ -6,16 +6,16 @@ import BestDeals from '../components/Route/BestDeals/BestDeals';
 import FeaturedProduct from '../components/Route/FeaturedProducts/FeaturedProducts';
 import Sponsored from '../components/Route/Sponsored';
 import Footer from '../components/Layout/Footer';
-// import Events from '../components/Events/Events';
+import Events from '../components/Events/Events';
 
 const HomePage = () => {
   return (
     <div>
-        <Header/>
+        <Header activeHeading={1} />
         <Hero/>
         <Categories/>
         <BestDeals/>
-        {/* <Events/> */}
+        <Events/>
         <FeaturedProduct/>
         <Sponsored/>
         <Footer/>

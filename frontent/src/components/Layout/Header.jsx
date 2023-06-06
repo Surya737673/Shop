@@ -15,16 +15,17 @@ import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
 // import { backend_url } from "../../server";
 // import Cart from "../cart/Cart";
-// import Wishlist from "../Wishlist/Wishlist";
+import Wishlist from "../Wishlist/Wishlist.jsx";
 import { RxCross1 } from "react-icons/rx";
 import { backend_url } from "../../server";
+import Cart from "../Cart/Cart";
 
 const Header = () => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
 //   const { isSeller } = useSelector((state) => state.seller);
 //   const { wishlist } = useSelector((state) => state.wishlist);
-//   const { cart } = useSelector((state) => state.cart);
-//   const { allProducts } = useSelector((state) => state.products);
+  const { cart } = useSelector((state) => state.cart);
+  const { allProducts } = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -33,14 +34,31 @@ const Header = () => {
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const wishlist = [
+    {
+      name: "Iphone",
+      description: "test",
+      price: 600
+    },
+    {
+      name: "Iphone",
+      description: "test",
+      price: 600
+    },
+    {
+      name: "Iphone",
+      description: "test",
+      price: 600
+    }
+  ]
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
 
     const filteredProducts =
-      productData &&
-      productData.filter((product) =>
+    allProducts &&
+    allProducts.filter((product) =>
         product.name.toLowerCase().includes(term.toLowerCase())
       );
     setSearchData(filteredProducts);
@@ -93,8 +111,9 @@ const Header = () => {
             </div>
 
             <div className={`${styles.button}`}>
-                <Link to={{}}>
+                <Link to="/shop-create">
                 <h1 className="text-[#fff] flex items-center">
+                    Become Seller
                     {/* {isSeller ? "Go Dashboard" : "Become Seller"}{" "} */}
                     <IoIosArrowForward className="ml-1" />
                 </h1>
@@ -159,7 +178,7 @@ const Header = () => {
                     color="rgb(255 255 255 / 83%)"
                     />
                     <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                    {/* {cart && cart.length} */}
+                    {cart && cart.length}
                     </span>
                 </div>
                 </div>
@@ -182,16 +201,16 @@ const Header = () => {
                 </div>
                 </div>
 
-                {/* {openCart ? <Cart setOpenCart={setOpenCart} /> : null} */}
+                {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
 
-                {/* {openWishlist ? (
+                {openWishlist ? (
                 <Wishlist setOpenWishlist={setOpenWishlist} />
-                ) : null} */}
+                ) : null}
             </div>
             </div>
         </div>
 
-        {/* <div
+         <div
             className={`${
             active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
             }
@@ -285,7 +304,7 @@ const Header = () => {
                     )}
                 </div>
 
-                <Navbar active={activeHeading} />
+                <Navbar active={{}} />
                 <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                     <Link to="/shop-create">
                     <h1 className="text-[#fff] flex items-center">
@@ -328,7 +347,7 @@ const Header = () => {
                 </div>
             </div>
             )}
-        </div> */}
+        </div>
     </>
   );
 };
