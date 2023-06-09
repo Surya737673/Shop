@@ -13,17 +13,15 @@ import { CgProfile } from "react-icons/cg";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
-// import { backend_url } from "../../server";
-// import Cart from "../cart/Cart";
+import { backend_url } from "../../server";
 import Wishlist from "../Wishlist/Wishlist.jsx";
 import { RxCross1 } from "react-icons/rx";
-import { backend_url } from "../../server";
 import Cart from "../Cart/Cart";
 
 const Header = () => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
-//   const { isSeller } = useSelector((state) => state.seller);
-//   const { wishlist } = useSelector((state) => state.wishlist);
+  const { isSeller } = useSelector((state) => state.seller);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const { allProducts } = useSelector((state) => state.products);
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,23 +32,6 @@ const Header = () => {
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const wishlist = [
-    {
-      name: "Iphone",
-      description: "test",
-      price: 600
-    },
-    {
-      name: "Iphone",
-      description: "test",
-      price: 600
-    },
-    {
-      name: "Iphone",
-      description: "test",
-      price: 600
-    }
-  ]
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -113,8 +94,7 @@ const Header = () => {
             <div className={`${styles.button}`}>
                 <Link to="/shop-create">
                 <h1 className="text-[#fff] flex items-center">
-                    Become Seller
-                    {/* {isSeller ? "Go Dashboard" : "Become Seller"}{" "} */}
+                    {isSeller ? "Go Dashboard" : "Become Seller"}
                     <IoIosArrowForward className="ml-1" />
                 </h1>
                 </Link>

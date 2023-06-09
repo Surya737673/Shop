@@ -56,8 +56,8 @@ const UserOrderDetails = () => {
     await axios.put(`${server}/order/order-refund/${id}`,{
       status: "Processing refund"
     }).then((res) => {
-       toast.success(res.data.message);
-    dispatch(getAllOrdersOfUser(user._id));
+        toast.success(res.data.message);
+        dispatch(getAllOrdersOfUser(user._id));
     }).catch((error) => {
       toast.error(error.response.data.message);
     })
@@ -86,6 +86,7 @@ const UserOrderDetails = () => {
       <br />
       {data &&
         data?.cart.map((item, index) => {
+            console.log("item",item)
           return(
           <div className="w-full flex items-start mb-5">
             <img

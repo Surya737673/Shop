@@ -17,7 +17,8 @@ import {
   ShopCreatePage,
   SellerActivationPage,
   ShopLoginPage,
-  OrderDetailsPage
+  OrderDetailsPage,
+  TrackOrderPage
 } from "./routes/Routes";
 
 import {
@@ -29,7 +30,11 @@ import {
   ShopAllCoupouns,
   ShopPreviewPage,
   ShopAllOrders,
-  ShopOrderDetails
+  ShopOrderDetails,
+  ShopAllRefunds,
+  ShopSettingsPage,
+  ShopWithDrawMoneyPage,
+  ShopInboxPage
 } from "./routes/ShopRoutes";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -111,6 +116,12 @@ function App() {
           </ProtectedRoute>
         } />
 
+        <Route path="/user/track/order/:id" element={
+          <ProtectedRoute >
+            <TrackOrderPage />
+          </ProtectedRoute>
+        } />
+
         <Route path="/profile" element={
           <ProtectedRoute >
             <ProfilePage />
@@ -135,6 +146,15 @@ function App() {
           element={<SellerProtectedRoute>
             <ShopHomePage />
           </SellerProtectedRoute>}
+        />
+
+
+        <Route
+          path="/settings"
+          element={
+            <SellerProtectedRoute>
+              <ShopSettingsPage />
+            </SellerProtectedRoute>}
         />
 
         <Route
@@ -172,6 +192,14 @@ function App() {
         />
 
         <Route
+          path="/dashboard-refunds"
+          element={
+            <SellerProtectedRoute>
+              <ShopAllRefunds />
+            </SellerProtectedRoute>}
+        />
+
+        <Route
           path="/order/:id"
           element={
             <SellerProtectedRoute>
@@ -200,6 +228,22 @@ function App() {
           element={
             <SellerProtectedRoute>
               <ShopAllCoupouns />
+            </SellerProtectedRoute>}
+        />
+
+        <Route
+          path="/dashboard-withdraw-money"
+          element={
+            <SellerProtectedRoute>
+              <ShopWithDrawMoneyPage />
+            </SellerProtectedRoute>}
+        />
+
+        <Route
+          path="/dashboard-messages"
+          element={
+            <SellerProtectedRoute>
+              <ShopInboxPage />
             </SellerProtectedRoute>}
         />
 

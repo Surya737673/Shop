@@ -16,7 +16,7 @@ const ShopInfo = ({ isOwner }) => {
   const {seller} = useSelector((state)=> state.seller)
 
   useEffect(() => {
-    // dispatch(getAllProductsShop(id));
+    dispatch(getAllProductsShop(id));
     setIsLoading(true);
     axios.get(`${server}/shop/get-shop-info/${id}`).then((res) => {
      setData(res.data.shop);
@@ -73,11 +73,11 @@ const ShopInfo = ({ isOwner }) => {
       </div>
       <div className="p-3">
         <h5 className="font-[600]">Total Products</h5>
-        <h4 className="text-[#000000a6]">{"4"}</h4>
+        <h4 className="text-[#000000a6]">{products && products.length}</h4>
       </div>
       <div className="p-3">
         <h5 className="font-[600]">Shop Ratings</h5>
-        <h4 className="text-[#000000b0]">{'rating'}/5</h4>
+        <h4 className="text-[#000000b0]">{averageRating}/5</h4>
       </div>
       <div className="p-3">
         <h5 className="font-[600]">Joined On</h5>

@@ -10,13 +10,14 @@ import { getAllEventsShop } from "../../redux/actions/event";
 
 const ShopProfileData = ({ isOwner }) => {
   const { products } = useSelector((state) => state.products);
+  const { seller } = useSelector((state) => state.seller);
   const { events } = useSelector((state) => state.events);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProductsShop(id));
-    dispatch(getAllEventsShop(id));
+    dispatch(getAllEventsShop(seller._id));
   }, [dispatch]);
 
   const [active, setActive] = useState(1);
