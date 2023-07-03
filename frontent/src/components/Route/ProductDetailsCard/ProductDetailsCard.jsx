@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { backend_url } from "../../../server";
 import styles from "../../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -17,15 +18,14 @@ import {
 } from "../../../redux/actions/wishlist";
 
 const ProductDetailsCard = ({ setOpen, data }) => {
-
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
-  const [select, setSelect] = useState(false);
+  //   const [select, setSelect] = useState(false);
 
-  const handleMessageSubmit = () => { };
+  const handleMessageSubmit = () => {};
 
   const decrementCount = () => {
     if (count > 1) {
@@ -38,7 +38,6 @@ const ProductDetailsCard = ({ setOpen, data }) => {
   };
 
   const addToCartHandler = (id) => {
-    console.log(id)
     const isItemExists = cart && cart.find((i) => i._id === id);
     if (isItemExists) {
       toast.error("Item already in cart!");
@@ -85,13 +84,13 @@ const ProductDetailsCard = ({ setOpen, data }) => {
             <div className="block w-full 800px:flex">
               <div className="w-full 800px:w-[50%]">
                 <img
-                  src={data.shop.shop_avatar_url}
+                  src={`${backend_url}${data.images && data.images[0]}`}
                   alt=""
                 />
                 <div className="flex">
                   <Link to={`/shop/preview/${data.shop._id}`} className="flex">
                     <img
-                      src={data.shop.shop_avatar_url}
+                      src={`${backend_url}${data?.shop?.avatar}`}
                       alt=""
                       className="w-[50px] h-[50px] rounded-full mr-2"
                     />

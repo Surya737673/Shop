@@ -191,8 +191,23 @@ const DashboardSideBar = ({ active }) => {
           </h5>
         </Link>
       </div>
+
+      <div className="w-full flex items-center p-4 pb-5">
+        <Link to="/dashboard-analytics" className="w-full flex items-center">
+          <CiSettings
+            size={30}
+            color={`${active === 11 ? "crimson" : "#555"}`}
+          />
+          <h5
+            className={`hidden 800px:block pl-2  text-[18px] font-[400] ${
+              active === 12 ? "text-[crimson]" : "text-[#555]"
+            }`}
+          >
+            Analytics
+          </h5>
+        </Link>
+      </div>
     </div>
   );
 };
-
 export default DashboardSideBar;

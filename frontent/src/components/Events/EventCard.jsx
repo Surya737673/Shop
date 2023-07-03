@@ -32,10 +32,7 @@ const EventCard = ({ active, data }) => {
       } lg:flex p-2`}
     >
       <div className="w-full lg:-w[50%] m-auto">
-        <img 
-            src={"https://cdn.shopify.com/s/files/1/1706/9177/products/NEWAppleMacbookProwithM1ProChip14InchLaptop2021ModelMKGQ3LL_A_16GB_1TBSSD_custommacbd.jpg?v=1659592838"}
-            alt="" 
-                    />
+      <img src={`${backend_url}${data.images[0]}`} alt="" />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center">
         <h2 className={`${styles.productTitle}`}>{data.name}</h2>

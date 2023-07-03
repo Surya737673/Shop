@@ -256,7 +256,6 @@ const ProductDetailsInfo = ({
   averageRating,
 }) => {
   const [active, setActive] = useState(1);
-  console.log("products",data)
 
   return (
     <div className="bg-[#f5f6fb] px-3 800px:px-10 py-2 rounded">
@@ -330,7 +329,7 @@ const ProductDetailsInfo = ({
             ))}
 
           <div className="w-full flex justify-center">
-            {data && data.reviews.length === 0 && (
+            {data && data.reviews.length === 0 (
               <h5>No Reviews have for this product!</h5>
             )}
           </div>

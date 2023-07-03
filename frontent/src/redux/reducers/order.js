@@ -32,17 +32,17 @@ export const orderReducer = createReducer(initialState, {
   },
 
   // get all orders for admin
-  // adminAllOrdersRequest: (state) => {
-  //   state.adminOrderLoading = true;
-  // },
-  // adminAllOrdersSuccess: (state, action) => {
-  //   state.adminOrderLoading = false;
-  //   state.adminOrders = action.payload;
-  // },
-  // adminAllOrdersFailed: (state, action) => {
-  //   state.adminOrderLoading = false;
-  //   state.error = action.payload;
-  // },
+  adminAllOrdersRequest: (state) => {
+    state.adminOrderLoading = true;
+  },
+  adminAllOrdersSuccess: (state, action) => {
+    state.adminOrderLoading = false;
+    state.adminOrders = action.payload;
+  },
+  adminAllOrdersFailed: (state, action) => {
+    state.adminOrderLoading = false;
+    state.error = action.payload;
+  },
 
   clearErrors: (state) => {
     state.error = null;

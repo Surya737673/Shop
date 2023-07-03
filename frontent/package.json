@@ -17,9 +17,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "chart.js": "^4.3.0",
     "country-state-city": "^3.1.4",
     "nodemailer": "^6.9.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-lottie": "^1.2.3",
@@ -29,7 +31,9 @@
     "react-toastify": "^9.1.2",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "socket.io-client": "^4.6.2",
     "stripe": "^12.8.0",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

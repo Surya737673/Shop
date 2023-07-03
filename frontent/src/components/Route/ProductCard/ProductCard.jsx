@@ -8,10 +8,8 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
-// import { backend_url } from "../../../server";
 import styles from "../../../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
-// import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import {
   addToWishlist,
   removeFromWishlist,
@@ -21,6 +19,7 @@ import { addTocart } from "../../../redux/actions/cart";
 import { toast } from "react-toastify";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import Ratings from "../../Products/Ratings";
+import { backend_url } from "../../../server";
 
 const ProductCard = ({ data, isEvent }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
@@ -36,7 +35,6 @@ const ProductCard = ({ data, isEvent }) => {
         setClick(false);
       }
     }, [wishlist]);
-
 
   const removeFromWishlistHandler = (data) => {
     setClick(!click);
@@ -69,7 +67,7 @@ const ProductCard = ({ data, isEvent }) => {
         <div className="flex justify-end"></div>
         <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
           <img
-            // src={data?.image_Url[0] && data.image_Url[0].url}
+            src={`${backend_url}${data.images && data.images[0]}`}
             alt=""
             className="w-full h-[170px] object-contain"
           />

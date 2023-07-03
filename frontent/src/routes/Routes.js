@@ -16,7 +16,7 @@ import SellerActivationPage from "../pages/SellerActivationPage"
 import ShopLoginPage from "../pages/ShopLoginPage";
 import OrderDetailsPage from "../pages/OrderDetailsPage";
 import TrackOrderPage from "../pages/TrackOrderPage";
-
+import UserInbox from "../pages/UserInbox.jsx";
 
 
 export {
@@ -37,5 +37,6 @@ export {
     SellerActivationPage,
     ShopLoginPage,
     OrderDetailsPage,
-    TrackOrderPage
+    TrackOrderPage,
+    UserInbox
 }

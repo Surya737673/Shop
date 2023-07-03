@@ -6,56 +6,58 @@ const path = require ("path");
 const { upload } = require("../multer");
 const router = express.Router();
 
-// create a new conversation
+// create new message
 router.post(
-  "/create-new-conversation",
+  "/create-new-message",
+  upload.single("images"),
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const { groupTitle, userId, sellerId } = req.body;
+      const messageData = req.body;
 
-      const isConversationExist = await Conversation.findOne({ groupTitle });
-
-      if (isConversationExist) {
-        const conversation = isConversationExist;
-        res.status(201).json({
-          success: true,
-          conversation,
-        });
-      } else {
-        const conversation = await Conversation.create({
-          members: [userId, sellerId],
-          groupTitle: groupTitle,
-        });
-
-        res.status(201).json({
-          success: true,
-          conversation,
-        });
+      if (req.file) {
+        const filename = req.file.filename;
+        const fileUrl = path.join(filename);
+        messageData.images = fileUrl;
       }
+
+      messageData.conversationId = req.body.conversationId;
+      messageData.sender = req.body.sender;
+      messageData.text = req.body.text;
+
+      const message = new Messages({
+        conversationId: messageData.conversationId,
+        text: messageData.text,
+        sender: messageData.sender,
+        images: messageData.images ? messageData.images : undefined,
+      });
+
+      await message.save();
+
+      res.status(201).json({
+        success: true,
+        message,
+      });
     } catch (error) {
-      return next(new ErrorHandler(error.response.message), 500);
+      return next(new ErrorHandler(error.message), 500);
     }
   })
 );
 
-// get seller conversations
+// get all messages with conversation id
 router.get(
-  "/get-all-conversation-seller/:id",
-  isSeller,
+  "/get-all-messages/:id",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      const conversations = await Conversation.find({
-        members: {
-          $in: [req.params.id],
-        },
-      }).sort({ updatedAt: -1, createdAt: -1 });
+      const messages = await Messages.find({
+        conversationId: req.params.id,
+      });
 
       res.status(201).json({
         success: true,
-        conversations,
+        messages,
       });
     } catch (error) {
-      return next(new ErrorHandler(error), 500);
+      return next(new ErrorHandler(error.message), 500);
     }
   })
 );

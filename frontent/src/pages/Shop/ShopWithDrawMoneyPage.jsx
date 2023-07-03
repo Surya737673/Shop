@@ -1,20 +1,20 @@
 import React from 'react'
 import DashboardHeader from '../../components/Shop/Layout/DashboardHeader'
-import DashboardSideBar from '../../components/Shop/Layout/DashboardSideBar'
-import DashboardMessages from "../../components/Shop/DashboardMessages";
+import WithdrawMoney from "../../components/Shop/WithdrawMoney";
+import DashboardSideBar from '../../components/Shop/Layout/DashboardSideBar';
 
-const ShopInboxPage = () => {
+const ShopWithDrawMoneyPage = () => {
   return (
     <div>
     <DashboardHeader />
     <div className="flex items-start justify-between w-full">
       <div className="w-[80px] 800px:w-[330px]">
-        <DashboardSideBar active={8} />
+        <DashboardSideBar active={7} />
       </div>
-       <DashboardMessages />
+       <WithdrawMoney />
     </div>
   </div>
   )
 }
 
-export default ShopInboxPage
+export default ShopWithDrawMoneyPage

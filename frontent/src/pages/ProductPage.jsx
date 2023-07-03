@@ -13,7 +13,7 @@ const ProductsPage = () => {
   const categoryData = searchParams.get("category");
   const {allProducts} = useSelector((state) => state.products);
   const [data, setData] = useState([]);
-// console.log(allProducts)
+
   useEffect(() => {
     if (categoryData === null) {
       const d = allProducts && [...allProducts].sort((a,b)=> a.sold_out - b.sold_out)
@@ -23,7 +23,7 @@ const ProductsPage = () => {
       allProducts && allProducts.filter((i) => i.category === categoryData);
       setData(d);
     }
-    //    window.scrollTo(0,0);
+       window.scrollTo(0,0);
   }, [allProducts]);
 
   return (

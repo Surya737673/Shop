@@ -11,6 +11,8 @@ const { upload } = require("../multer");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
+const Order = require("../models/order");
+const Product = require("../models/product");
 
 // create shop
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {
@@ -114,57 +116,57 @@ router.post(
 
 // login shop
 router.post(
-    "/login-shop",
-    catchAsyncErrors(async (req, res, next) => {
-      try {
-        const { email, password } = req.body;
-  
-        if (!email || !password) {
-          return next(new ErrorHandler("Please provide the all fields!", 400));
-        }
-  
-        const user = await Shop.findOne({ email }).select("+password");
-  
-        if (!user) {
-          return next(new ErrorHandler("User doesn't exists!", 400));
-        }
-  
-        const isPasswordValid = await user.comparePassword(password);
-  
-        if (!isPasswordValid) {
-          return next(
-            new ErrorHandler("Please provide the correct information", 400)
-          );
-        }
-  
-        sendShopToken(user, 201, res);
-      } catch (error) {
-        return next(new ErrorHandler(error.message, 500));
+  "/login-shop",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return next(new ErrorHandler("Please provide the all fields!", 400));
       }
-    })
-  );
-  
+
+      const user = await Shop.findOne({ email }).select("+password");
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists!", 400));
+      }
+
+      const isPasswordValid = await user.comparePassword(password);
+
+      if (!isPasswordValid) {
+        return next(
+          new ErrorHandler("Please provide the correct information", 400)
+        );
+      }
+
+      sendShopToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 // load shop
 router.get(
-    "/getSeller",
-    isSeller,
-    catchAsyncErrors(async (req, res, next) => {
-      try {
-        const seller = await Shop.findById(req.seller._id);
-  
-        if (!seller) {
-          return next(new ErrorHandler("User doesn't exists", 400));
-        }
-  
-        res.status(200).json({
-          success: true,
-          seller,
-        });
-      } catch (error) {
-        return next(new ErrorHandler(error.message, 500));
+  "/getSeller",
+  isSeller,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const seller = await Shop.findById(req.seller._id);
+
+      if (!seller) {
+        return next(new ErrorHandler("User doesn't exists", 400));
       }
-    })
-  );
+
+      res.status(200).json({
+        success: true,
+        seller,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 // log out from shop
 router.get(
@@ -172,6 +174,10 @@ router.get(
   catchAsyncErrors(async (req, res, next) => {
     try {
       res.cookie("seller_token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      });
+      res.cookie("token", null, {
         expires: new Date(Date.now()),
         httpOnly: true,
       });
@@ -186,14 +192,14 @@ router.get(
 );
 
 // get shop info
-router.get("/get-shop-info/:id", catchAsyncErrors(async(req,res,next)=>{
-  try{
+router.get("/get-shop-info/:id", catchAsyncErrors(async (req, res, next) => {
+  try {
     const shop = await Shop.findById(req.params.id)
     res.status(201).json({
       success: true,
       shop,
     })
-  } catch(error){
+  } catch (error) {
     return next(new ErrorHandler(error.message, 500))
   }
 }))
@@ -253,6 +259,87 @@ router.put(
       res.status(201).json({
         success: true,
         shop,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+
+// all sellers --- for admin
+router.get(
+  "/admin-all-sellers",
+  isAuthenticated,
+  isAdmin("Admin"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const sellers = await Shop.find().sort({
+        createdAt: -1,
+      });
+      res.status(201).json({
+        success: true,
+        sellers,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// delete seller ---admin
+router.delete(
+  "/delete-seller/:id",
+  isAuthenticated,
+  isAdmin("Admin"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const seller = await Shop.findById(req.params.id);
+
+      if (!seller) {
+        return next(
+          new ErrorHandler("Seller is not available with this id", 400)
+        );
+      }
+
+      await Shop.findByIdAndDelete(req.params.id);
+
+      res.status(201).json({
+        success: true,
+        message: "Seller deleted successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+// chart data
+router.get(
+  "/get-analytics-data/:id",
+  isSeller,
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+
+      const shop = await Shop.findById(req.params.id);
+      const products = await Product.find({ shopId: req.params.id });
+      const orders = await Order.find({
+        "cart.shopId": req.params.id,
+      }).sort({
+        createdAt: -1,
+      });
+
+      console.log(orders)
+
+      if (!shop) {
+        return next(new ErrorHandler("User not found", 400));
+      }
+
+      res.status(201).json({
+        success: true,
+        shop,
+        products,
+        orders
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
