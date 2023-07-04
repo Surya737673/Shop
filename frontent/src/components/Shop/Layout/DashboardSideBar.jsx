@@ -8,6 +8,7 @@ import { CiMoneyBill, CiSettings } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { HiOutlineReceiptRefund } from "react-icons/hi";
+import { BiBarChartAlt2 } from "react-icons/bi";
 
 const DashboardSideBar = ({ active }) => {
   return (
@@ -194,9 +195,9 @@ const DashboardSideBar = ({ active }) => {
 
       <div className="w-full flex items-center p-4 pb-5">
         <Link to="/dashboard-analytics" className="w-full flex items-center">
-          <CiSettings
+          <BiBarChartAlt2
             size={30}
-            color={`${active === 11 ? "crimson" : "#555"}`}
+            color={`${active === 12 ? "crimson" : "#555"}`}
           />
           <h5
             className={`hidden 800px:block pl-2  text-[18px] font-[400] ${

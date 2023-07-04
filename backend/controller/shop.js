@@ -322,6 +322,11 @@ router.get(
     try {
 
       const shop = await Shop.findById(req.params.id);
+
+      if (!shop) {
+        return next(new ErrorHandler("User not found", 400));
+      }
+
       const products = await Product.find({ shopId: req.params.id });
       const orders = await Order.find({
         "cart.shopId": req.params.id,
@@ -329,17 +334,14 @@ router.get(
         createdAt: -1,
       });
 
-      console.log(orders)
-
-      if (!shop) {
-        return next(new ErrorHandler("User not found", 400));
-      }
+      const topeSellingproducts = products.sort((a, b) => b.sold_out - a.sold_out)
 
       res.status(201).json({
         success: true,
         shop,
         products,
-        orders
+        orders,
+        topeSellingproducts
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

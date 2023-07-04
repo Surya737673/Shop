@@ -22,19 +22,23 @@ ChartJS.register(
 
 
 function BarChar({ data }) {
-  console.log(data)
-  const options={
-    responsive:true,
+
+  const options = {
+    responsive: true,
     title: { text: "Sales Report", display: true },
-    scales:{
-        yAxes:{
-            ticks:{
-                beginAtZero: true
-            }
+    scales: {
+      yAxes: {
+        ticks: {
+          beginAtZero: true
         }
+      }
     }
-}
-  return <Bar data={data} options={ options } />;
+  }
+  return (
+    <div style={{minHeight:"480px", maxHeight: "480px" }}>
+      <Bar data={data} options={options} />
+    </div>
+  )
 }
 
 export default BarChar;

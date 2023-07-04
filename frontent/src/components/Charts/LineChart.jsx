@@ -17,7 +17,7 @@ const LineChart = ({data}) => {
         }
     }
   return (
-    <div>
+    <div  style={{minHeight:"480px", maxHeight: "480px" }}>
       <Line data={data} options={ options } />
     </div>
   );
