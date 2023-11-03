@@ -229,7 +229,7 @@ export const navItems = [
       title: "Gifts",
       subTitle: "",
       image_Url:
-        "https://securecdn.pymnts.com/wp-content/uploads/2014/11/Gifts-Photo-700x489.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8b0-qT1-JA_JxihhTaMR_VvC25dDSRGR7uOK4SrP7ZDAyRrU&s",
     },
     {
       id: 7,
@@ -316,6 +316,7 @@ export const navItems = [
         },
         ratings: 4.2,
       },
+      price: 1099,
       discount_price: 1099,
       rating: 5,
       total_sell: 80,
@@ -444,7 +445,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,
@@ -512,7 +512,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,
@@ -545,6 +544,7 @@ export const navItems = [
         },
         ratings: 4.2,
       },
+      price: 300,
       discount_price: 1099,
       rating: 5,
       total_sell: 20,
@@ -580,7 +580,6 @@ export const navItems = [
       reviews: [
         {
           user: {
-            // user object will be here
           },
           comment: "IT's so cool!",
           rating: 5,
