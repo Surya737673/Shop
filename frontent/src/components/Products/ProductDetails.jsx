@@ -311,7 +311,7 @@ const ProductDetailsInfo = ({
       {active === 2 ? (
         <div className="w-full min-h-[40vh] flex flex-col items-center py-3 overflow-y-scroll">
           {data &&
-            data.reviews.map((item, index) => (
+            data.reviews?.map((item, index) => (
               <div className="w-full flex my-2">
                 <img
                   src={`${backend_url}/${item.user.avatar}`}
@@ -330,7 +330,12 @@ const ProductDetailsInfo = ({
 
           <div className="w-full flex justify-center">
             { data && data?.reviews?.length === 0 && (
-              <h5>No Reviews have for this product!</h5>
+              <h5>No Reviews for this product!</h5>
+            )}
+          </div>
+          <div className="w-full flex justify-center">
+            { data && data?.reviews === undefined && (
+              <h5>No Reviews for this product!</h5>
             )}
           </div>
         </div>

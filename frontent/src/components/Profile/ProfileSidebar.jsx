@@ -17,7 +17,7 @@ const ProfileSidebar = ({ setActive, active}) => {
 
     const logoutHandler = () => {
         axios.get(`${server}/user/logout`,{withCredentials: true}).then((res)=>{
-            toast.success(res.data.message)
+            toast.success("logged out successfully")
             window.location.reload(true);
             navigate("/login");
         }).catch((err)=>{

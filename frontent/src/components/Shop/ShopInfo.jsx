@@ -13,7 +13,6 @@ const ShopInfo = ({ isOwner }) => {
   const [isLoading,setIsLoading] = useState(false);
   const {id} = useParams();
   const dispatch = useDispatch();
-  const {seller} = useSelector((state)=> state.seller)
 
   useEffect(() => {
     dispatch(getAllProductsShop(id));
@@ -25,7 +24,7 @@ const ShopInfo = ({ isOwner }) => {
       console.log(error);
       setIsLoading(false);
     })
-  }, [])
+  }, [id])
   
 
   const logoutHandler = async () => {

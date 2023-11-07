@@ -5,7 +5,6 @@ import EventCard from "./EventCard";
 
 const Events = () => {
   const {allEvents} = useSelector((state) => state.events); 
-  console.log(allEvents)
 
   return (
     <div>
