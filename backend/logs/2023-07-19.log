@@ -1,0 +1,27 @@
+::1 - - [19/Jul/2023:07:46:11 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:11 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:11 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10 HTTP/1.1" 201 10408 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:12 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:12 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10 HTTP/1.1" 201 10408 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:12 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:13 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10 HTTP/1.1" 201 10408 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:14 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10 HTTP/1.1" 201 10408 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+::1 - - [19/Jul/2023:07:46:14 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10 HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+[19/Jul/2023:09:41:04 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10" 304 43.630 ms - {"status":304}
+[19/Jul/2023:09:41:05 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10" 304 38.730 ms - {"status":304}
+[19/Jul/2023:09:41:05 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10" 201 78.998 ms - {"status":201,"length":"10408"}
+[19/Jul/2023:09:41:05 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10" 304 45.773 ms - {"status":304}
+[19/Jul/2023:09:41:06 +0000] "GET /api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10" 201 75.318 ms - {"status":201,"length":"10408"}
+[19/Jul/2023:09:41:06 +0000] "GET /api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10" 304 78.637 ms - {"status":304}
+{"timestamp":"2023-07-19T09:43:34.642Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"46.822","response":{"status":304}}
+{"timestamp":"2023-07-19T09:43:35.082Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"32.741","response":{"status":304}}
+{"timestamp":"2023-07-19T09:43:35.093Z","method":"GET","url":"/api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10","status":"201","responseTime":"40.899","response":{"status":201}}
+{"timestamp":"2023-07-19T09:43:35.532Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"33.887","response":{"status":304}}
+{"timestamp":"2023-07-19T09:43:36.709Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"33.020","response":{"status":304}}
+{"timestamp":"2023-07-19T09:43:36.716Z","method":"GET","url":"/api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10","status":"201","responseTime":"38.820","response":{"status":201}}
+{"timestamp":"2023-07-19T09:51:17.851Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"61.355","response":{"status":304}}
+{"timestamp":"2023-07-19T09:51:18.254Z","method":"GET","url":"/api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10","status":"201","responseTime":"49.641","response":{"status":201}}
+{"timestamp":"2023-07-19T09:51:18.257Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"55.807","response":{"status":304}}
+{"timestamp":"2023-07-19T09:51:18.725Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"57.424","response":{"status":304}}
+{"timestamp":"2023-07-19T09:51:19.104Z","method":"GET","url":"/api/v2/order/get-seller-all-orders/64856667d8c1eb92bcc26a10","status":"304","responseTime":"46.894","response":{"status":304}}
+{"timestamp":"2023-07-19T09:51:19.112Z","method":"GET","url":"/api/v2/product/get-all-products-shop/64856667d8c1eb92bcc26a10","status":"201","responseTime":"53.714","response":{"status":201}}

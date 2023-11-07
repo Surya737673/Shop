@@ -1,0 +1,10 @@
+name,description,category,tags,originalPrice,discountPrice,stock,images,shopId,shop,sold_out
+Product5,desc1,gifts,gadgets,1000,800,100,Custom-sticky-notes.png,,,
+Product6,desc2,electronics,gadgets,2000,800,100,Custom-sticky-notes.png,,,
+Product7,desc3,computers and accessories,,4000,2000,200,Custom-sticky-notes.png,,,
+Product8,desc4,gadgts,gifts,2000,1000,400,Custom-sticky-notes.png,,,
+Product9,desc5,clothing,clothes,10000,8000,100,Custom-sticky-notes.png,,,
+Product10,desc6,bags,bags,200,100,200,Custom-sticky-notes.png,,,
+Product11,desc7,clothes,clothes,3000,2000,400,Custom-sticky-notes.png,,,
+Product12,desc8,others,others,4000,2000,200,Custom-sticky-notes.png,,,
+Product13,desc9,others,others,2000,1000,100,Custom-sticky-notes.png,,,

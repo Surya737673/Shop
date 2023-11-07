@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 import { addTocart, removeFromCart } from '../../redux/actions/cart';
 
 const Cart = ({ setOpenCart }) => {
- 
-  const { cart } = useSelector((state)=>state.cart)
+
+  const { cart } = useSelector((state) => state.cart)
 
   const dispatch = useDispatch()
 
@@ -34,11 +34,11 @@ const Cart = ({ setOpenCart }) => {
         {cart && cart.length === 0 ? (
           <div className="w-full h-screen flex items-center justify-center">
             <div className="flex w-full justify-end pt-5 pr-5 fixed top-3 right-3">
-               <RxCross1 
+              <RxCross1
                 size={25}
                 className="cursor-pointer"
                 onClick={() => setOpenCart(false)}
-                />
+              />
             </div>
             <h5>Cart Items is empty!</h5>
           </div>
@@ -96,7 +96,6 @@ const Cart = ({ setOpenCart }) => {
 const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
   const [value, setValue] = useState(data.qty);
   const totalPrice = data.discountPrice * value;
-  console.log(data)
 
   const increment = (data) => {
     if (data.stock < value) {
@@ -107,7 +106,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
       quantityChangeHandler(updateCartData);
     }
   };
-  
+
   const decrement = (data) => {
     setValue(value === 1 ? 1 : value - 1);
     const updateCartData = { ...data, qty: value === 1 ? 1 : value - 1 };
@@ -115,43 +114,90 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
   };
 
   return (
-    <div className="border-b p-4">
-      <div className="w-full 800px:flex items-center">
+    // <div className="border-b p-4">
+    //   <div className="w-full 800px:flex items-center">
+    //     <div >
+    //       <div
+    //         className={`bg-[#e44343] border border-[#e4434373] rounded-full w-[25px] h-[25px] ${styles.noramlFlex} justify-center cursor-pointer`}
+    //         onClick={() => increment(data)}
+    //       >
+    //         <HiPlus size={18} color="#fff" />
+    //       </div>
+    //       <span className="pl-[10px]">{data.qty}</span>
+    //       <div
+    //         className="bg-[#a7abb14f] rounded-full w-[25px] h-[25px] flex items-center justify-center cursor-pointer"
+    //         onClick={() => decrement(data)}
+    //       >
+    //         <HiOutlineMinus size={16} color="#7d879c" />
+    //       </div>
+    //     </div>
+    //     <img
+    //       src={`${backend_url}${data?.images[0]}`}
+    //       alt=""
+    //       className="w-[130px] h-min ml-2 mr-2 rounded-[5px]"
+    //     />
+    //     <div className="pl-[5px]" >
+    //       <h1>{data.name}</h1>
+    //       <h4 className="font-[400] text-[15px] text-[#00000082]">
+    //         ${data.discountPrice} * {value}
+    //       </h4>
+    //       <h4 className="font-[600] text-[17px] pt-[3px] text-[#d02222] font-Roboto">
+    //         US${totalPrice}
+    //       </h4>
+    //     </div>
+    //     <div className="pl-[45px] mb-20" >
+    //       <RxCross1
+    //         className="cursor-pointer"
+    //         onClick={() => removeFromCartHandler(data)}
+    //       />
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="border-b p-4 flex flex-col sm:flex-row items-start">
+      <div className="mb-4 sm:mb-0 sm:mr-4 flex items-center">
+        <img
+          src={`${backend_url}${data?.images[0]}`}
+          alt=""
+          className="w-24 h-auto rounded"
+          style={{ minWidth: "120px" }}
+        />
+      </div>
+
+      <div className="flex-1 flex flex-col justify-between">
         <div>
+          <h1 className="text-lg font-bold">{data.name}</h1>
+          <h4 className="text-sm text-[#00000082] mt-1">
+            ${data.discountPrice} * {value}
+          </h4>
+          <h4 className="font-bold text-lg text-red-500 mt-1">US${totalPrice}</h4>
+        </div>
+
+        <div className="flex items-center mt-4 sm:mt-0">
           <div
-            className={`bg-[#e44343] border border-[#e4434373] rounded-full w-[25px] h-[25px] ${styles.noramlFlex} justify-center cursor-pointer`}
+            className="bg-[#e44343] border border-[#91686873] rounded-full w-8 h-8 flex items-center justify-center cursor-pointer mr-2"
             onClick={() => increment(data)}
           >
             <HiPlus size={18} color="#fff" />
           </div>
-          <span className="pl-[10px]">{data.qty}</span>
+          <span>{data.qty}</span>
           <div
-            className="bg-[#a7abb14f] rounded-full w-[25px] h-[25px] flex items-center justify-center cursor-pointer"
+            className="bg-[#a7abb14f] rounded-full w-8 h-8 flex items-center justify-center cursor-pointer ml-2"
             onClick={() => decrement(data)}
           >
             <HiOutlineMinus size={16} color="#7d879c" />
           </div>
         </div>
-        <img
-          // src={`${backend_url}${data?.images[0]}`}
-          alt=""
-          className="w-[130px] h-min ml-2 mr-2 rounded-[5px]"
-        />
-        <div className="pl-[5px]">
-          <h1>{data.name}</h1>
-          <h4 className="font-[400] text-[15px] text-[#00000082]">
-            ${data.discountPrice} * {value}
-          </h4>
-          <h4 className="font-[600] text-[17px] pt-[3px] text-[#d02222] font-Roboto">
-            US${totalPrice}
-          </h4>
-        </div>
+      </div>
+
+      <div className="ml-auto mt-2 sm:mt-0">
         <RxCross1
           className="cursor-pointer"
           onClick={() => removeFromCartHandler(data)}
         />
       </div>
     </div>
+
+
   );
 };
 export default Cart

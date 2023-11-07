@@ -19,7 +19,7 @@ const CountDown = ({ data }) => {
       axios.delete(`${server}/event/delete-shop-event/${data._id}`);
     }
     return () => clearTimeout(timer);
-  });
+  },[data._id]);
 
   function calculateTimeLeft() {
     const difference = +new Date(data.Finish_Date) - +new Date();

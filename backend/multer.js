@@ -12,4 +12,17 @@ const storage = multer.diskStorage({
     },
 });
 
+const pdfStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'pdf'); // Set the destination folder to "pdf"
+    },
+    filename: function (req, file, cb) {
+      const orderId = req.params.id;
+      const filename = `order${orderId}.pdf`;
+      cb(null, filename); // Set the filename to "order{orderId}.pdf"
+    },
+  });
+
 exports.upload = multer({storage: storage});
+exports.uploadPdf = multer({storage: pdfStorage});
+

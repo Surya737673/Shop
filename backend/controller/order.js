@@ -6,6 +6,9 @@ const { isAuthenticated, isSeller, isAdmin } = require("../middleware/auth");
 const Order = require("../models/order");
 const Shop = require("../models/shop");
 const Product = require("../models/product");
+const PDFDocument = require('pdfkit');
+const { createInvoice } = require("../utils/createIvoicePDF");
+const fs = require('fs');
 
 // create new order
 router.post(
@@ -127,7 +130,7 @@ router.put(
 
       async function updateSellerInfo(amount) {
         const seller = await Shop.findById(req.seller.id);
-        
+
         seller.availableBalance = amount;
 
         await seller.save();
@@ -227,6 +230,32 @@ router.get(
   })
 );
 
+
+// pdf download
+const path = require('path');
+
+router.get(
+  "/download-pdf/:id",
+  catchAsyncErrors(async (req, res, next) => {
+    const orderId = req.params.id;
+    try {
+      const order = await Order.findById(orderId);
+      const fileName = `order${orderId}.pdf`;
+      const filePath = path.join(__dirname, '../pdf', fileName);
+
+      await createInvoice(order, filePath);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="order${orderId}.pdf"`);
+
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
 
 
 

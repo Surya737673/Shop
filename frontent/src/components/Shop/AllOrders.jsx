@@ -6,16 +6,42 @@ import { Link } from "react-router-dom";
 import Loader from "../Layout/Loader";
 import { getAllOrdersOfShop } from "../../redux/actions/order";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { server } from "../../server";
+import axios from "axios";
+import { saveAs } from 'file-saver';
+
 
 const AllOrders = () => {
   const { orders, isLoading } = useSelector((state) => state.order);
   const { seller } = useSelector((state) => state.seller);
-  console.log(orders)
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllOrdersOfShop(seller._id));
   }, [dispatch]);
+
+const handleDownload = (id) => {
+  try {
+    axios
+    .get(`${server}/order/download-pdf/${id}`, {
+      responseType: 'blob',
+    })
+    .then((res) => {
+      console.log(res)
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `order${id}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
@@ -46,7 +72,25 @@ const AllOrders = () => {
       minWidth: 130,
       flex: 0.8,
     },
-
+    {
+      field: "Download",
+      flex: 1,
+      minWidth: 150,
+      headerName: "",
+      type: "",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            {/* <Link to={`/order/${params.id}`}> */}
+              <Button onClick={()=>handleDownload(params.id)}>
+                <AiOutlineArrowRight size={20} />
+              </Button>
+            {/* </Link> */}
+          </>
+        );
+      },
+    },
     {
       field: " ",
       flex: 1,

@@ -94,8 +94,8 @@ const CartSingle = ({ data,removeFromWishlistHandler,addToCartHandler }) => {
             US${totalPrice}
           </h4>
         </div>
-        <div>
-          <BsCartPlus size={20} className="cursor-pointer" tile="Add to cart"
+        <div className="pl-[45px] ">
+          <BsCartPlus size={20} className="cursor-pointer " tile="Add to cart"
            onClick={() => addToCartHandler(data)}
           />
         </div>
