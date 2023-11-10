@@ -4,12 +4,12 @@ import styles from '../../styles/styles'
 import EventCard from "./EventCard";
 
 const Events = () => {
-  const {allEvents} = useSelector((state) => state.events); 
+  const {allEvents, isLoading} = useSelector((state) => state.events); 
 
   return (
     <div>
      {
-      // !isLoading && (
+      !isLoading && (
         <div className={`${styles.section}`}>
       <div className={`${styles.heading}`}>
         <h1>Popular Events</h1>
@@ -31,7 +31,7 @@ const Events = () => {
       </div>
      
     </div>
-      // )
+      )
      }
   </div>
   )
