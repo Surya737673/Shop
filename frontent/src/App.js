@@ -66,6 +66,7 @@ import { getAllEvents } from "./redux/actions/event";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ProtectedAdminRoute from "./routes/ProtectedAdminRoute";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -330,6 +331,13 @@ function App() {
             <ProtectedAdminRoute>
               <AdminDashboardWithdraw />
             </ProtectedAdminRoute>
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+              <NotFound />
           }
         />
 
