@@ -18,6 +18,9 @@ app.use(cors({
   credentials: true,
 }));
 app.use("/", express.static("uploads"));
+app.use("/", (req,res)=> {
+  res.send("hello world")
+});
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // config
