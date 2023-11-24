@@ -20,7 +20,10 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-
+      if(!avatar) { 
+        toast.warn("Please upload avatar");
+        return
+      }
       const config = {header:{"Content-Type":"multipart/form-data"}};
       const newForm = new FormData();
       newForm.append("file",avatar);
