@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(logger('dev'));  //
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://shop-7ebcnpu84-surya737673.vercel.app/",
   credentials: true,
 }));
 app.use("/", express.static("uploads"));
