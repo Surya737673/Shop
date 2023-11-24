@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://shop-omap.vercel.app/",
+  origin: "*",
   credentials: true,
 }));
 app.use("/", express.static(path.join(__dirname, "./uploads")));
