@@ -17,8 +17,8 @@ app.use(cors({
   origin: "*",
   credentials: true,
 }));
-app.use("/", express.static(path.join(__dirname, "./uploads")));
-app.use("/test", (req, res) => {
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+app.use("/", (req, res) => {
   res.send("hello world")
 });
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -32,37 +32,37 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 
 // logs 
-function getLogFileTimestamp() {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+// function getLogFileTimestamp() {
+//   const currentDate = new Date();
+//   const year = currentDate.getFullYear();
+//   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+//   const day = String(currentDate.getDate()).padStart(2, '0');
+//   return `${year}-${month}-${day}`;
+// }
 
-const logDirectory = path.join(__dirname, 'logs');
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+// const logDirectory = path.join(__dirname, './logs');
+// fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
-const logStream = rfs.createStream(getLogFileTimestamp() + '.log', {
-  interval: '1d', // Rotate daily
-  path: logDirectory,
-});
+// const logStream = rfs.createStream(getLogFileTimestamp() + '.log', {
+//   interval: '1d',
+//   path: logDirectory,
+// });
 
-app.use(
-  morgan((tokens, req, res) => {
-    return JSON.stringify({
-      timestamp: tokens.date(req, res, 'iso'),
-      method: tokens.method(req, res),
-      url: tokens.url(req, res),
-      status: tokens.status(req, res),
-      responseTime: tokens['response-time'](req, res),
-      response: {
-        status: res.statusCode,
-        body: JSON.stringify(res.body),
-      },
-    });
-  }, { stream: logStream })
-);
+// app.use(
+//   morgan((tokens, req, res) => {
+//     return JSON.stringify({
+//       timestamp: tokens.date(req, res, 'iso'),
+//       method: tokens.method(req, res),
+//       url: tokens.url(req, res),
+//       status: tokens.status(req, res),
+//       responseTime: tokens['response-time'](req, res),
+//       response: {
+//         status: res.statusCode,
+//         body: JSON.stringify(res.body),
+//       },
+//     });
+//   }, { stream: logStream })
+// );
 // 
 
 //import routes 
