@@ -160,10 +160,7 @@ router.get("/logout", isAuthenticated, catchAsyncErrors(async(req,res,next)=> {
       expires: new Date(Date.now()),
       httpOnly : true,
     });
-    res.cookie("seller_token",null, {
-      expires: new Date(Date.now()),
-      httpOnly : true,
-    });
+    
     res.status(201).json({
       success: true,
       message: "Log out successfull!"
