@@ -17,8 +17,8 @@ app.use(cors({
   origin: "https://shop-omap.vercel.app",
   credentials: true,
 }));
-app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
-app.use("/", (req, res) => {
+app.use("/", express.static(path.join(__dirname, "./uploads")));
+app.use("/test", (req, res) => {
   res.send("hello world")
 });
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
